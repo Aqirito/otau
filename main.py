@@ -42,7 +42,9 @@ def git_pull():
     print(f"Is remote branch ahead of local branch? {result}")
 
     if result == True:
+        print("Pulling...")
         repo.git.pull()
+        print("Repository is up to date.")
     else:
         print("Already up to date")
 
