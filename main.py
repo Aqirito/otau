@@ -1,4 +1,5 @@
 import requests
+from git_log import get_commit_sha
 
 def is_remote_ahead(repo_owner, repo_name, branch_name, local_commit_sha):
     # GitHub API endpoint to get the latest commit SHA of the remote branch
@@ -20,7 +21,7 @@ def is_remote_ahead(repo_owner, repo_name, branch_name, local_commit_sha):
 repo_owner = "Aqirito"
 repo_name = "otau"
 branch_name = "main"
-local_commit_sha = "main"  # Replace with your local commit SHA
+local_commit_sha = get_commit_sha  # Replace with your local commit SHA
 
 result = is_remote_ahead(repo_owner, repo_name, branch_name, local_commit_sha)
 print(f"Is remote branch ahead of local branch? {result}")
