@@ -1,5 +1,5 @@
 # otau
-OTAU is an ON-THE-AIR-UPDATES using github API and gitpython libraries
+OTAU is an example for On-The-Air-Update using github API and GitPython Libraries
 
 
 ### Setup Python Virtual Environment
