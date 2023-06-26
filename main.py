@@ -1,28 +1,26 @@
 import requests
 
-def detect_changes_on_branch(repo_owner, repo_name, branch_name):
-    # GitHub API endpoint for comparing branches
-    url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/compare/{branch_name}"
-    print(url)
+def compare_commits(repo_owner, repo_name, base_commit, head_commit):
+    # GitHub API endpoint for comparing commits
+    url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/compare/{base_commit}...{head_commit}"
 
     # Send GET request to the GitHub API
     response = requests.get(url)
-
-    print("response", response)
 
     if response.status_code == 200:
         comparison = response.json()
         total_commits = comparison['total_commits']
         files_changed = len(comparison['files'])
 
-        print(f"Total commits on branch '{branch_name}': {total_commits}")
-        print(f"Total files changed on branch '{branch_name}': {files_changed}")
+        print(f"Total commits between {base_commit} and {head_commit}: {total_commits}")
+        print(f"Total files changed between {base_commit} and {head_commit}: {files_changed}")
     else:
-        print("Error: Unable to fetch branch comparison.")
+        print("Error: Unable to compare commits.")
 
 # Example usage
 repo_owner = "Aqirito"
 repo_name = "sbx-voice-cloning-booth"
-branch_name = "setup-frontend"
+base_commit = "main"  # Replace with the base commit SHA
+head_commit = "resample-audio"  # Replace with the head commit SHA
 
-detect_changes_on_branch(repo_owner, repo_name, branch_name)
+compare_commits(repo_owner, repo_name, base_commit, head_commit)
