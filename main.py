@@ -53,9 +53,9 @@ def git_pull():
         repo.git.pull()
         print("Repository is up to date.")
         print("starting local file server...")
-        cmd = 'python -m http.server 8000'
-        os.system(cmd)
-        print("local server started at port 8000")
+        from file_server import start_server
+        server = start_server()
+        print(server)
     else:
         print("Already up to date")
 
