@@ -20,7 +20,7 @@ def is_remote_ahead(repo_owner, repo_name, remote_branch_name, local_branch_name
     # GitHub API endpoint to get the latest commit SHA of the remote branch
     url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/branches/{remote_branch_name}"
 
-    local_commit_sha = get_commit_sha(remote_branch_name)  # Replace with your local commit SHA
+    local_commit_sha = get_commit_sha(local_branch_name)  # Replace with your local commit SHA
     
     # Send GET request to the GitHub API
     response = requests.get(url)
@@ -52,10 +52,6 @@ def git_pull():
         print("Pulling...")
         repo.git.pull()
         print("Repository is up to date.")
-        print("starting local file server...")
-        from file_server import start_server
-        server = start_server()
-        print(server)
     else:
         print("Already up to date")
 
